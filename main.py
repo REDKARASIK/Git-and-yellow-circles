@@ -2,13 +2,13 @@ import sys
 import random
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5 import uic
+from UI import Ui_MainWindow
 
 
-class MadeCircles(QMainWindow):
+class MadeCircles(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.can_draw = False
         self.draw_button.clicked.connect(self.paint_start)
 
@@ -25,8 +25,8 @@ class MadeCircles(QMainWindow):
             self.can_draw = False
 
     def draw_circle(self, qp):
-        qp.setBrush(QColor(252, 226, 5))
-        r = random.randint(0, 300)
+        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+        r = random.randint(25, 300)
         x = random.randint(0, 839)
         y = random.randint(0, 588)
         if x + r > 839:
